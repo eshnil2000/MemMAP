@@ -1,6 +1,6 @@
 import random
 
-outfile='../data/mext_1_1M.out'
+outfile='../data/m_1_1M.out'
 infile='../data/output.csv'
 
 # Read the sample lines from the input file
