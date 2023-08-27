@@ -1,6 +1,6 @@
 # Define the number of lines to generate
 num_lines = 100000
-outfile='../data/mext_1_1M.out'
+outfile='../data/m_1_1M.out'
 infile='../data/output.csv'
 
 # Read the lines from output.csv
