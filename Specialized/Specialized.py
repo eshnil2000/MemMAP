@@ -1,8 +1,7 @@
 from sklearn.model_selection import train_test_split
 from numpy import array
 from keras.preprocessing.text import Tokenizer
-from keras.utils import to_categorical, Sequence
-from keras.preprocessing.sequence import pad_sequences
+from keras.utils import to_categorical, Sequence,pad_sequences
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.layers import LSTM, CuDNNLSTM
@@ -37,6 +36,7 @@ modeling_scenarios = OrderedDict()
 
 TRACE_FILE_NAMES = [
     'swaptions_1_1M.out',
+    'm_1_1M.out',
     'bodytrack_1_1M.out',
     'canneal_1_1M.out',
     'ferret_1_1M.out',
@@ -69,7 +69,7 @@ def run_dc_lstm(P_trace, P_epoch):
     TRACE_DIRECTORY = "../data/" 
     sys.path.append(PROJECT_ROOT_DIRECTORY)
     os.environ["TMP"] = "/tmp"
-    USE_GPU = True  # True
+    USE_GPU = False  # True
 
     # File Settings
 
@@ -92,6 +92,7 @@ def run_dc_lstm(P_trace, P_epoch):
     # Size of files in number of rows. This should be implemented as a single dict for both
     TRACE_FILE_NAME_SIZES = {
         'swaptions_1_1M.out': 1000000,
+        'm_1_1M.out': 1000000,
         'blackscholes_1_1M.out': 1000000,
         'bodytrack_1_1M.out': 1000000,
         'canneal_1_1M.out': 1000000,
@@ -954,6 +955,7 @@ def run_dc_lstm(P_trace, P_epoch):
 
     trace_offsets = {
         'swaptions_1_1M.out': 100000,
+        'm_1_1M.out': 100000,
         'bodytrack_1_1M.out': 100000,
         'canneal_1_1M.out': 100000,
         'ferret_1_1M.out': 100000,
@@ -1103,7 +1105,7 @@ def run_dc_lstm(P_trace, P_epoch):
 def main():
   #  trace = "bodytrack_1_1M.out"
     #for trace in TRACE_FILE_NAMES:
-    run_dc_lstm([sys.argv[1]],sys.argv[2])# trace: "bodytrack_1_1M.out", epoch=20
+    run_dc_lstm([sys.argv[1]],int(sys.argv[2]))# trace: "bodytrack_1_1M.out", epoch=20
 if __name__ == "__main__":
     # execute only if run as a script
     main()
