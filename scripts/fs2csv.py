@@ -17,7 +17,18 @@ for line in data:
         ts, pid, inst, cpuid, rip, va = match.groups()
         #csv_data.append([ts, pid, inst, cpuid, rip, '0x'+va])
         #csv_data.append(['0x'+va+":",'R', '0x'+va])
-        csv_data.append([va+":",'R', va])
+        #csv_data.append([va+":",'R', va])
+        # Convert the hexadecimal address to an integer
+        addr_int = int(va, 16)
+
+        # Shift the address right by 12 bits
+        shifted_addr_int = addr_int >> 12
+
+        # Convert the shifted integer address back to hexadecimal format
+        shifted_addr_hex = hex(shifted_addr_int)
+        #csv_data.append([ts, pid, inst, cpuid, rip, '0x'+va])
+        csv_data.append([shifted_addr_hex+":",'R', shifted_addr_hex])
+
 
 # Write CSV data to a file
 with open(outfile, 'w', newline='') as csvfile:
