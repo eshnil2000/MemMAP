@@ -69,7 +69,7 @@ def run_dc_lstm(P_trace, P_epoch):
     TRACE_DIRECTORY = "../data/" 
     sys.path.append(PROJECT_ROOT_DIRECTORY)
     os.environ["TMP"] = "/tmp"
-    USE_GPU = False  # True
+    USE_GPU = True  # False
 
     # File Settings
 
